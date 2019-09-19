@@ -39,9 +39,9 @@ window.location.href = 'svieslente.php';
                         <table>
                             <tr>
                                 <td>
-                                    Vardas: <br/><input name="Vardas" class="form-control" />
-                                    Pavardė:<br/><input name="Pavarde" class="form-control" />
-                                    Kontaktinis Numeris:<br/><input name="Telefonas" class="form-control"/>
+                                    Vardas: <br/><input name="Vardas" class="form-control" required />
+                                    Pavardė:<br/><input name="Pavarde" class="form-control" required/>
+                                    Kontaktinis Numeris:<br/><input name="Telefonas" class="form-control" required/>
                                     Specialistas:
                                     <select name="Specialistas" id="Specialistas" class="form-control">
                                         <option></option>

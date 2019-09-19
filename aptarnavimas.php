@@ -13,22 +13,10 @@ header("Location: $_SERVER[PHP_SELF]");
 }
 ?>
     <script type="text/javascript">
-        function book_viewing(id) {
-            window.location.href = 'viewing_lettings_handler.php?book_viewing=' + id;
-        }
-
-        function edt_id(id) {
-            window.location.href = 'edit_data.php?edit_id=' + id;
-        }
-
-        function property_match(id) {
-            window.location.href = 'property_matcher_lettings.php?property_match=' + id;
-        }
-
         function delete_id(id) {
             if (confirm('Two step confirmation required to prevent accidental deletion')) {
                 if (confirm('Please confirm twice')) {
-                    window.location.href = 'lettings_data.php?delete_id=' + id;
+                    window.location.href = 'aptarnavimas.php?delete_id=' + id;
                 }
             }
         }
@@ -64,6 +52,7 @@ header("Location: $_SERVER[PHP_SELF]");
                                 <th>Kontaktinis Numeris</th>
                                 <th>Užduotis</th>
                                 <th>Apytikrė trukmė</th>
+                                <th>Ištrinti</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,6 +77,11 @@ header("Location: $_SERVER[PHP_SELF]");
                                     </td>
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['trukme'] ?>
+                                    </td>
+                                    <td style="font-size: 14px; white-space: nowrap;">
+                                         <a href="javascript:delete_id('<?php echo $row['id']; ?>')">
+                                             <i class="far fa-trash-alt"></i>
+                                         </a>    
                                     </td>
                                 </tr>
                             <?php } ?>
