@@ -13,37 +13,35 @@ header("Location: $_SERVER[PHP_SELF]");
 }
 ?>
     <script type="text/javascript">
-        function delete_id(id) {
-            if (confirm('Two step confirmation required to prevent accidental deletion')) {
-                if (confirm('Please confirm twice')) {
+        function delete_id(id) 
+        {
+            if (confirm('Ištrinti klientą')) 
+            {
+                if (confirm('Patvirtinkite dar kartą')) 
+                {
                     window.location.href = 'aptarnavimas.php?delete_id=' + id;
                 }
             }
         }
     </script>
+    
 <html>
     <head>
         <title>Specialisto Puslapis</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="css/DTstyle.css" />
     </head>
     <body class="bg-info" style="width:100%">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-        <div>
+        
             <div class="table-responsive" style="width:80%; margin-left:auto; margin-right:auto">
                 <div class="table table-bordered table-striped table-hover">
                     <h2 class="text-center text-dark pt-2">Specialisto Puslapis</h2>
                     <hr>
-                    <table class="table table-bordered table-hover" style="width:100%" id="example">
+                    <table class="table table-bordered table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -52,6 +50,7 @@ header("Location: $_SERVER[PHP_SELF]");
                                 <th>Kontaktinis Numeris</th>
                                 <th>Užduotis</th>
                                 <th>Apytikrė trukmė</th>
+                                <th>Statusas</th>
                                 <th>Ištrinti</th>
                             </tr>
                         </thead>
@@ -59,6 +58,15 @@ header("Location: $_SERVER[PHP_SELF]");
                         <?php 
                             while($row = mysqli_fetch_assoc($init_result)) {
                         ?>
+                            <script> 
+                                function change()
+                                {
+                                    var elem = document.getElementById("statusas<?=$row['id']?>");
+                                    if (elem.value=="priimti") elem.value = "baigti";
+                                    else elem.style.visibility = "hidden";
+                                } 
+                            </script>
+                            
                                 <tr>
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['id'] ?>
@@ -78,18 +86,20 @@ header("Location: $_SERVER[PHP_SELF]");
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['trukme'] ?>
                                     </td>
+                                    <td>
+                                        <input onclick="change()" type="button" value="priimti" id="statusas<?=$row['id']?>">
+                                    </td>
                                     <td style="font-size: 14px; white-space: nowrap;">
                                          <a href="javascript:delete_id('<?php echo $row['id']; ?>')">
-                                             <i class="far fa-trash-alt"></i>
+                                             <img src="img/trash.png" style="width:20px; height:20px"></a>
                                          </a>    
                                     </td>
+                                    
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
         <script>
             $('table').DataTable({
                 order: [

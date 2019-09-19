@@ -36,12 +36,12 @@ window.location.href = 'svieslente.php';
                 <div class="table-responsive">
                     <div class="search-table-outter wrapper">
                     <form method="post">
-                        <table>
+                        <table style="margin-top: 200px">
                             <tr>
                                 <td>
-                                    Vardas: <br/><input name="Vardas" class="form-control" required />
-                                    Pavardė:<br/><input name="Pavarde" class="form-control" required/>
-                                    Kontaktinis Numeris:<br/><input name="Telefonas" class="form-control" required/>
+                                    Vardas: <br/><input name="Vardas" class="form-control" style="margin-bottom: 10px" required />
+                                    Pavardė:<br/><input name="Pavarde" class="form-control" style="margin-bottom: 10px" required/>
+                                    Kontaktinis Numeris:<br/><input name="Telefonas" class="form-control" style="margin-bottom: 10px" required/>
                                     Specialistas:
                                     <select name="Specialistas" id="Specialistas" class="form-control">
                                         <option></option>
@@ -66,7 +66,6 @@ window.location.href = 'svieslente.php';
             </div>
         </div>
         <?php 
-
         mysqli_close($conn); ?>
     </body>
 </html>

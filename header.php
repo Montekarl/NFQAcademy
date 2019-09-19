@@ -10,5 +10,9 @@
             <li >
                 <a href="aptarnavimas.php">Specialisto Puslapis</a>
             </li>
+             <li >
+                 <a href="lankytojo_puslapis.php">Lankytojo Puslapis</a>
+            </li>
+            
     </div>
 </nav>

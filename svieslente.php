@@ -5,7 +5,7 @@ require 'dbconfig.php';
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
-        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas ";
+        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas ORDER BY lankytojas.id ASC LIMIT 10;";
         $init_result = mysqli_query($conn, $query);
         if(isset($_GET['delete_id']))
     {
@@ -23,6 +23,7 @@ if (!$conn){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="5; URL=">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="css/DTstyle.css"/> 

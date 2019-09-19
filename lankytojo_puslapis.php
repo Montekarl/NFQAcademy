@@ -1,4 +1,12 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php require 'dbconfig.php';
+if (!$conn){
+die("Connection failed: ". mysqli_connect_error());
+}
+$query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas";
+$init_result = mysqli_query($conn, $query);
+?>
+  
+<html>
     <head>
     <title>Lettings Applicants</title>
 
@@ -10,21 +18,25 @@
     </head>
     <body>
         
-            <div class ="container" style="width:900px;" align="center">
-                <div class="table-responsive">
-                    <div class="search-table-outter wrapper">
-                    <form method="post">
-                        <table>
+        <div class ="container" style="width:900px;" align="center">
+            <div class="table-responsive">
+                <div class="search-table-outter wrapper">
+                    <form action="/NFQAcademy/lankytojas_handler.php" method="get">
+                        <table style="margin-top: 200px">
                             <tr>
-                                <td>
-                                    Įveskite savo numerį: <br/><input name="id" class="form-control" required/>
+                                <td >
+                                    Įveskite savo numerį: <br/><input name="vartotojas" class="form-control" style="margin-top: 20px" required/>
                                 </td>
                             </tr>
                             </table>
                             <tr>
                                 <td>
                                     <br>
-                                    <button type="submit" name="btn-save"><strong>Patikrinti</strong></button>
+                                    <button type="submit" >
+                                        <strong>
+                                            Patikrinti
+                                        </strong>
+                                    </button>
                                 </td>
                             </tr>
                         </table>
