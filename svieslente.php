@@ -13,6 +13,7 @@ if (!$conn){
         mysqli_query($conn, $sql_query);
         header("Location: $_SERVER[PHP_SELF]");
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@ if (!$conn){
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="refresh" content="5; URL=">
+        <meta http-equiv="refresh" content="6; URL=">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/fontawesome/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="css/DTstyle.css"/> 
@@ -43,7 +44,7 @@ if (!$conn){
                             <tr> 
                                 <th>Vieta eilėje</th>
                                 <th>Vardas</th>
-                                <th>Trukmė</th>
+                                <th>Priėmimo laikas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +59,7 @@ if (!$conn){
                                     <?php echo $row['Vardas'] ?>
                                 </td>
                                 <td style="font-size: 14px; white-space: nowrap;">
-                                    <?php echo $row['trukme'] ?>
+                                    <?=$row['endtime']?>
                                 </td>
                             </tr>
                             <?php } ?>

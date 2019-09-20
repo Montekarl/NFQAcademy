@@ -61,6 +61,7 @@ header("Location: $_SERVER[PHP_SELF]");
                             <script> 
                                 function change(id)
                                 {
+                                   
                                     var elem = document.getElementById("statusas"+id);
                                     if (elem.value=="priimti") elem.value = "baigti";
                                     else elem.style.visibility = "hidden";
