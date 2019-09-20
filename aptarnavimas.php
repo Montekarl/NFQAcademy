@@ -49,7 +49,7 @@ header("Location: $_SERVER[PHP_SELF]");
                                 <th>Pavardė</th>
                                 <th>Kontaktinis Numeris</th>
                                 <th>Užduotis</th>
-                                <th>Apytikrė trukmė</th>
+                                <th>Pabaigti iki</th>
                                 <th>Statusas</th>
                                 <th>Ištrinti</th>
                             </tr>
@@ -59,9 +59,9 @@ header("Location: $_SERVER[PHP_SELF]");
                             while($row = mysqli_fetch_assoc($init_result)) {
                         ?>
                             <script> 
-                                function change()
+                                function change(id)
                                 {
-                                    var elem = document.getElementById("statusas<?=$row['id']?>");
+                                    var elem = document.getElementById("statusas"+id);
                                     if (elem.value=="priimti") elem.value = "baigti";
                                     else elem.style.visibility = "hidden";
                                 } 
@@ -84,10 +84,10 @@ header("Location: $_SERVER[PHP_SELF]");
                                         <?php echo $row['specialistas'] ?>
                                     </td>
                                     <td style="font-size: 14px; white-space: nowrap;">
-                                        <?php echo $row['trukme'] ?>
+                                        <?php echo $row['endtime'] ?>
                                     </td>
                                     <td>
-                                        <input onclick="change()" type="button" value="priimti" id="statusas<?=$row['id']?>">
+                                        <input onclick="change(<?=$row['id']?>)" type="button" value="priimti" id="statusas<?=$row['id']?>">
                                     </td>
                                     <td style="font-size: 14px; white-space: nowrap;">
                                          <a href="javascript:delete_id('<?php echo $row['id']; ?>')">

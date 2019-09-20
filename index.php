@@ -7,7 +7,16 @@ $Vardas = isset($_POST['Vardas']) ? mysqli_real_escape_string($conn,$_POST['Vard
 $Pavarde = isset($_POST['Pavarde']) ? mysqli_real_escape_string($conn,$_POST['Pavarde']):false;
 $Telefonas = isset($_POST['Telefonas']) ? mysqli_real_escape_string($conn,$_POST['Telefonas']):false;
 $Specialistas = isset($_POST['Specialistas']) ? mysqli_real_escape_string($conn,$_POST['Specialistas']):false;
-$sql_query = "INSERT INTO lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',NULL)";
+
+//gauti trukmę užduočiai įvykdyti
+$intervalas_query = mysqli_query($conn,"SELECT * FROM specialistas WHERE id='$Specialistas'");
+$intervalas = mysqli_fetch_assoc($intervalas_query);
+
+//--------------------
+$registruota = date('Y-m-d H:i:s');
+$endtime='ADDTIME("' . $registruota . '", "' . $intervalas['trukme'] . '")';
+//$endtime = '0000-00-00 00:00:50';
+$sql_query = "INSERT INTO lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,endtime,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',$endtime,'$registruota')";
 if(mysqli_query($conn,$sql_query))
 {
 ?>

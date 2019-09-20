@@ -5,7 +5,7 @@ require 'dbconfig.php';
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
-        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas ORDER BY lankytojas.id ASC LIMIT 10;";
+        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas ORDER BY lankytojas.id ASC LIMIT 200;";
         $init_result = mysqli_query($conn, $query);
         if(isset($_GET['delete_id']))
     {
