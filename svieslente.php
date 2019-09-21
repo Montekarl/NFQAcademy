@@ -5,13 +5,16 @@ require 'dbconfig.php';
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
-        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas ORDER BY lankytojas.id ASC LIMIT 200;";
+        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.Statusas='Klientas laukia' ORDER BY lankytojas.id ASC LIMIT 200;";
         $init_result = mysqli_query($conn, $query);
         if(isset($_GET['delete_id']))
     {
         $sql_query="DELETE FROM lankytojas WHERE id=".$_GET['delete_id'];
         mysqli_query($conn, $sql_query);
         header("Location: $_SERVER[PHP_SELF]");
+        
+        
+        
 }
 
 ?>
@@ -59,7 +62,11 @@ if (!$conn){
                                     <?php echo $row['Vardas'] ?>
                                 </td>
                                 <td style="font-size: 14px; white-space: nowrap;">
-                                    <?=$row['endtime']?>
+                                    <?php
+                                    //$sumtime= "SELECT SUM(Quantity) AS TotalEndTIme FROM lankytojas WHERE id<". $row['id'];
+                                    echo $row['endtime']
+                                    ?>
+                                    
                                 </td>
                             </tr>
                             <?php } ?>

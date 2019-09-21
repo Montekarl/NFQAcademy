@@ -41,7 +41,6 @@ if(isset($_POST['statusas-naujas']))
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-        
             <div class="table-responsive" style="width:80%; margin-left:auto; margin-right:auto">
                 <div class="table table-bordered table-striped table-hover">
                     <h2 class="text-center text-dark pt-2">Specialisto Puslapis</h2>
@@ -76,7 +75,6 @@ if(isset($_POST['statusas-naujas']))
                                 } 
                             </script>
                             -->
-                            
                                 <tr>
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['id'] ?>
@@ -99,20 +97,21 @@ if(isset($_POST['statusas-naujas']))
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['Statusas'] ?> 
                                     </td>
-                                    
-                                    
                                     <td>
                                         <?php 
-                                            if(isset($_POST[$row['mygtukas'].$row['id']])){
-                                                echo "alert('this will be an update query later');";
-                                            }
                                         
+                                            if(isset($_POST[$row['mygtukas'].$row['id']])){
+                                                $status_sql="UPDATE lankytojas SET Statusas = 'Aptarnaujama' WHERE lankytojas.id =".$row['id'];
+                                                $changestatus = mysqli_query($conn,$status_sql);
+                                                $button_sql="UPDATE lankytojas SET mygtukas = 'baigti' WHERE lankytojas.id =".$row['id'];
+                                                $changestatus = mysqli_query($conn,$button_sql);
+                                                echo '<meta http-equiv="refresh" content="0">';
+                                            }
                                         ?>
-                                        <form name="t<?=$row['id']?>" method="post" action="?">
-                                           <input onclick="change(<?=$row['id']?>)" type="button" name="<?=$row['mygtukas']?><?=$row['id']?>" value="<?=$row['mygtukas']?>" id="statusas<?=$row['id']?>">
+                                        <form name="<?=$row['id']?>" method="post" action="?">
+                                           <input type="submit" name="<?=$row['mygtukas']?><?=$row['id']?>" value="<?=$row['mygtukas']?>" id="statusas<?=$row['id']?>">
                                         </form>    
                                     </td>
-                                    
                                     <td style="font-size: 14px; white-space: nowrap;">
                                          <a href="javascript:delete_id('<?php echo $row['id']; ?>')">
                                              <img src="img/trash.png" style="width:20px; height:20px"></a>
