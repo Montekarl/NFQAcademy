@@ -11,6 +11,11 @@ $sql_query="DELETE FROM lankytojas WHERE id=".$_GET['delete_id'];
 mysqli_query($conn, $sql_query);
 header("Location: $_SERVER[PHP_SELF]");
 }
+
+if(isset($_POST['statusas-naujas']))
+    {
+        echo "<meta http-equiv='refresh' content='0'>";
+    }
 ?>
     <script type="text/javascript">
         function delete_id(id) 
@@ -50,23 +55,27 @@ header("Location: $_SERVER[PHP_SELF]");
                                 <th>Kontaktinis Numeris</th>
                                 <th>Užduotis</th>
                                 <th>Pabaigti iki</th>
-                                <th>Statusas</th>
-                                <th>Ištrinti</th>
+                                <th>Kliento Statusas</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php 
                             while($row = mysqli_fetch_assoc($init_result)) {
                         ?>
+                            <!--
                             <script> 
                                 function change(id)
                                 {
-                                   
                                     var elem = document.getElementById("statusas"+id);
                                     if (elem.value=="priimti") elem.value = "baigti";
                                     else elem.style.visibility = "hidden";
+                                    var x = document.getElementById("statusas"+id).name;
+                                    var x = document.getElementById("statusas"+id).name="myname1";
                                 } 
                             </script>
+                            -->
                             
                                 <tr>
                                     <td style="font-size: 14px; white-space: nowrap;">
@@ -87,9 +96,23 @@ header("Location: $_SERVER[PHP_SELF]");
                                     <td style="font-size: 14px; white-space: nowrap;">
                                         <?php echo $row['endtime'] ?>
                                     </td>
-                                    <td>
-                                        <input onclick="change(<?=$row['id']?>)" type="button" value="priimti" id="statusas<?=$row['id']?>">
+                                    <td style="font-size: 14px; white-space: nowrap;">
+                                        <?php echo $row['Statusas'] ?> 
                                     </td>
+                                    
+                                    
+                                    <td>
+                                        <?php 
+                                            if(isset($_POST[$row['mygtukas'].$row['id']])){
+                                                echo "alert('this will be an update query later');";
+                                            }
+                                        
+                                        ?>
+                                        <form name="t<?=$row['id']?>" method="post" action="?">
+                                           <input onclick="change(<?=$row['id']?>)" type="button" name="<?=$row['mygtukas']?><?=$row['id']?>" value="<?=$row['mygtukas']?>" id="statusas<?=$row['id']?>">
+                                        </form>    
+                                    </td>
+                                    
                                     <td style="font-size: 14px; white-space: nowrap;">
                                          <a href="javascript:delete_id('<?php echo $row['id']; ?>')">
                                              <img src="img/trash.png" style="width:20px; height:20px"></a>
