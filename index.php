@@ -3,26 +3,27 @@ include_once 'dbconfig.php';
 if(isset($_POST['btn-save']))
 {
 
-$Vardas = isset($_POST['Vardas']) ? mysqli_real_escape_string($conn,$_POST['Vardas']):false;
-$Pavarde = isset($_POST['Pavarde']) ? mysqli_real_escape_string($conn,$_POST['Pavarde']):false;
-$Telefonas = isset($_POST['Telefonas']) ? mysqli_real_escape_string($conn,$_POST['Telefonas']):false;
-$Specialistas = isset($_POST['Specialistas']) ? mysqli_real_escape_string($conn,$_POST['Specialistas']):false;
+    $Vardas = isset($_POST['Vardas']) ? mysqli_real_escape_string($conn,$_POST['Vardas']):false;
+    $Pavarde = isset($_POST['Pavarde']) ? mysqli_real_escape_string($conn,$_POST['Pavarde']):false;
+    $Telefonas = isset($_POST['Telefonas']) ? mysqli_real_escape_string($conn,$_POST['Telefonas']):false;
+    $Specialistas = isset($_POST['Specialistas']) ? mysqli_real_escape_string($conn,$_POST['Specialistas']):false;
 
-//gauti trukmę užduočiai įvykdyti iš 'specialistas' lentelės (below)
-$intervalas_query = mysqli_query($conn,"SELECT * FROM specialistas WHERE id='$Specialistas'");
-$intervalas = mysqli_fetch_assoc($intervalas_query);
+    //gauti trukmę užduočiai įvykdyti iš 'specialistas' lentelės (below)
+    $intervalas_query = mysqli_query($conn,"SELECT * FROM specialistas WHERE id='$Specialistas'");
+    $intervalas = mysqli_fetch_assoc($intervalas_query);
 
-//dabartiniam laikui konvertuoti (below), kur $registruota = vidutinis laikas užduočiai atlikti
-$registruota = date('Y-m-d H:i:s');
+    //dabartiniam laikui konvertuoti (below), kur $registruota = vidutinis laikas užduočiai atlikti
+    $registruota = date('Y-m-d H:i:s');
 
-//Laikui iki priėmimo pradžios apibrėžti(below), kur ADDTIME
-$endtime='ADDTIME("' . $registruota . '", "' . $intervalas['trukme'] . '")';
+    //Laikui iki priėmimo pradžios apibrėžti(below), kur ADDTIME
+    $endtime='ADDTIME("' . $registruota . '", "' . $intervalas['trukme'] . '")';
 
-$sql_query = "INSERT INTO lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,endtime,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',$endtime,'$registruota')";
-if(mysqli_query($conn,$sql_query))
+    $sql_query = "INSERT INTO lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,endtime,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',$endtime,'$registruota')";
+    if(mysqli_query($conn,$sql_query))
 {
 ?>
 <script type="text/javascript">
+    alert('Ačiū, kad užsiregistravote');
 window.location.href = 'svieslente.php';
 </script>
 <?php

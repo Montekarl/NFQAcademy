@@ -99,9 +99,8 @@ if(isset($_POST['statusas-naujas']))
                                     </td>
                                     <td>
                                         <?php 
-                                        
                                             if(isset($_POST[$row['mygtukas'].$row['id']])){
-                                                $status_sql="UPDATE lankytojas SET Statusas = 'Aptarnaujama' WHERE lankytojas.id =".$row['id'];
+                                                $status_sql="UPDATE lankytojas SET Statusas = 'Aptarnauta' WHERE lankytojas.id =".$row['id'];
                                                 $changestatus = mysqli_query($conn,$status_sql);
                                                 $button_sql="UPDATE lankytojas SET mygtukas = 'baigti' WHERE lankytojas.id =".$row['id'];
                                                 $changestatus = mysqli_query($conn,$button_sql);

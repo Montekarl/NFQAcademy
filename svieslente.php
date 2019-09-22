@@ -1,7 +1,5 @@
 <?php
-
 require 'dbconfig.php';
-
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
@@ -12,11 +10,7 @@ if (!$conn){
         $sql_query="DELETE FROM lankytojas WHERE id=".$_GET['delete_id'];
         mysqli_query($conn, $sql_query);
         header("Location: $_SERVER[PHP_SELF]");
-        
-        
-        
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,10 +57,12 @@ if (!$conn){
                                 </td>
                                 <td style="font-size: 14px; white-space: nowrap;">
                                     <?php
-                                    //$sumtime= "SELECT SUM(Quantity) AS TotalEndTIme FROM lankytojas WHERE id<". $row['id'];
-                                    echo $row['endtime']
+                                    $sql = "SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<".$row['id'];
+                                    $queue_sql = mysqli_query($conn, $sql);
+                                    while($queueing = mysqli_fetch_assoc($queue_sql)) {
+                                    echo $queueing['timeSum'];
+                                    }
                                     ?>
-                                    
                                 </td>
                             </tr>
                             <?php } ?>
