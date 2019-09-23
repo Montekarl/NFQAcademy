@@ -3,7 +3,7 @@ require 'dbconfig.php';
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
-        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.Statusas='Klientas laukia' ORDER BY lankytojas.id ASC LIMIT 200;";
+        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.Statusas='Klientas laukia' ORDER BY lankytojas.id ASC LIMIT 10;";
         $init_result = mysqli_query($conn, $query);
         if(isset($_GET['delete_id']))
     {
@@ -41,7 +41,8 @@ if (!$conn){
                             <tr> 
                                 <th>Vieta eilėje</th>
                                 <th>Vardas</th>
-                                <th>Priėmimo laikas</th>
+                                <th>Specialistas</th>
+                                <th>Atvykti už</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,11 +57,21 @@ if (!$conn){
                                     <?php echo $row['Vardas'] ?>
                                 </td>
                                 <td style="font-size: 14px; white-space: nowrap;">
+                                    <?php echo $row['specialistas'] ?>
+                                </td>
+                                <td style="font-size: 14px; white-space: nowrap;">
                                     <?php
-                                    $sql = "SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<".$row['id'];
+                                    //Pasirinkti visus prieš tai buvusius klientus ir sudėti jų reikšmes
+                                    //"SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<81 AND specialistas.specialistas=\'Saskaitos\'";
+                                    $sql = "SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<" . $row['id'] ." AND specialistas.specialistas='".$row['specialistas']."'";
                                     $queue_sql = mysqli_query($conn, $sql);
                                     while($queueing = mysqli_fetch_assoc($queue_sql)) {
-                                    echo $queueing['timeSum'];
+                                        $trukme=$queueing['timeSum'];
+                                        $uzsiregistruota=$row['Registruota'];
+                                        $duration=strtotime($trukme);
+                                        $date=strtotime($row['Registruota']);
+                                        $endtime=$date+$duration;
+                                        echo date ('H:i:s',$endtime-time());
                                     }
                                     ?>
                                 </td>
@@ -74,7 +85,6 @@ if (!$conn){
         <script>
             $('table').DataTable({
             order:[[3,'desc']],
-            pagingType:'full_numbers',
             scrollY: '80vh',
             scrollX: true,
             scrollCollapse: true,

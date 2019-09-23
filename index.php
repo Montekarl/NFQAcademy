@@ -2,7 +2,6 @@
 include_once 'dbconfig.php';
 if(isset($_POST['btn-save']))
 {
-
     $Vardas = isset($_POST['Vardas']) ? mysqli_real_escape_string($conn,$_POST['Vardas']):false;
     $Pavarde = isset($_POST['Pavarde']) ? mysqli_real_escape_string($conn,$_POST['Pavarde']):false;
     $Telefonas = isset($_POST['Telefonas']) ? mysqli_real_escape_string($conn,$_POST['Telefonas']):false;
@@ -43,7 +42,6 @@ window.location.href = 'svieslente.php';
     <title>Database - Add Applicant</title>
     </head>
     <body>
-        
             <div class ="container" style="width:900px;" align="center">
                 <div class="table-responsive">
                     <div class="search-table-outter wrapper">
