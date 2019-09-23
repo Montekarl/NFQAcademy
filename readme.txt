@@ -12,8 +12,8 @@ prisijungimo duomenys:
 vartotojo vardas: NFQakademija
 slaptažodis: nfqftw
 
- Pasirinkau BackEnd užduoti, nes tai labiau domina. 
- Stengiausi, kur imanoma, išspresti viska SQL užklausomis. Pvz. laika eileje skirsciau pagal prieš klienta esancius id ir pagal specialisto pavadinima.
+Pasirinkau BackEnd užduoti, nes tai labiau domina. 
+Stengiausi, kur imanoma, išspresti viska SQL užklausomis. Pvz. laika eileje skirsciau pagal prieš klienta esancius id ir pagal specialisto pavadinima.
 Lankytojo puslapiui panaudojau pavyzdi: https://www.w3schools.com/howto/howto_js_countdown.asp, siekdamas parodyti, kad truputi suprantu javascript. 
 Naudoju framework Datatables savo lentelems, atsigulsiu pats, nemuškit. :) 
 
@@ -22,7 +22,7 @@ Minimalus lygis:
 Svetaine susidaro iš keturiu puslapiu
 index.php -> registracijos forma naujiems klientams
 aptarnavimas.php -> specialisams skirtas puslapis
-svieslente.php -> skirta matyti neaptarnautiems klientams ir laikui iki ju priimimo.
+svieslente.php -> skirta matyti neaptarnautiems klientams ir laikui iki ju priemimo.
 lankytojo_puslapis.php -> lankytojas gali ivesti savo id, panaudojant GET metoda, parodomas laikas jam asmeniškai. 
 
 
@@ -61,7 +61,7 @@ Užregistravus nauja klienta turi išvesti Užregistruota sekmingai arba Ivyko klai
 3 lygio nelieciau, pritrukau laiko. 
 
 Žinomi trukumai.
-susipainiojau su laiko formatais, kadangi laiko aritmetiniams veiksmams nekonvertavau visko i sekundes (pvz prie datos pridejau minutes), puslapyje svieslente.php rodomi laikai yra neteisingi. Taciau jei pakeisite nuo 70 iki 74 svieslente.php puslapio eilutes i 
+susipainiojau su laiko formatais, kadangi laiko aritmetiniams veiksmams nekonvertavau visko i sekundes (pvz.: prie datos pridejau minutes), puslapyje svieslente.php rodomi laikai yra neteisingi. Taciau jei pakeisite eilutes nuo 70 iki 74 svieslente.php puslapyje i :
 -------
 echo $trukme;
 -------
