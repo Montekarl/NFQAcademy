@@ -21,7 +21,8 @@ $init_result = mysqli_query($conn, $query);
         <div class ="container" style="width:900px;" align="center">
             <div class="table-responsive">
                 <div class="search-table-outter wrapper">
-                    <form action="/NFQAcademy/lankytojas_handler.php" method="get">
+                    
+                    <form action="https://calm-tor-28070.herokuapp.com/NFQAcademy/lankytojas_handler.php" method="get">
                         <table style="margin-top: 200px">
                             <tr>
                                 <td >
