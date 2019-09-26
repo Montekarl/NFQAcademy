@@ -22,7 +22,7 @@ $init_result = mysqli_query($conn, $query);
             <div class="table-responsive">
                 <div class="search-table-outter wrapper">
                     
-                    <form action="//calm-tor-28070.herokuapp.com/NFQAcademy/lankytojas_handler.php/NFQAcademy/lankytojas_handler.php" method="get">
+                    <form action="//calm-tor-28070.herokuapp.com/lankytojas_handler.php?" method="get">
                         <table style="margin-top: 200px">
                             <tr>
                                 <td >
