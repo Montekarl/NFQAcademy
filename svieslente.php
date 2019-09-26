@@ -67,7 +67,7 @@ if (!$conn){
                                     $queue_sql = mysqli_query($conn, $sql);
                                     while($queueing = mysqli_fetch_assoc($queue_sql)) {
                                         $trukme=$queueing['timeSum'];
-                                        echo $trukme;
+                                        
                                         $uzsiregistruota=$row['Registruota'];
                                         $duration=strtotime($trukme);
                                         $date=strtotime($row['Registruota']);
