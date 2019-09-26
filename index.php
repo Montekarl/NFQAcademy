@@ -17,7 +17,7 @@ if(isset($_POST['btn-save']))
     //Laikui iki priėmimo pradžios apibrėžti(below), kur ADDTIME
     $endtime='ADDTIME("' . $registruota . '", "' . $intervalas['trukme'] . '")';
 
-    $sql_query = "INSERT INTO lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,endtime,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',$endtime,'$registruota')";
+    $sql_query = "INSERT INTO heroku_6b4d1af85eae168.lankytojas(id,Vardas,Pavarde,Telefonas,Specialistas,endtime,Registruota) VALUES(NULL,'$Vardas','$Pavarde','$Telefonas','$Specialistas',$endtime,'$registruota')";
     if(mysqli_query($conn,$sql_query))
 {
 ?>
