@@ -68,11 +68,11 @@ if (!$conn){
                                     while($queueing = mysqli_fetch_assoc($queue_sql)) {
                                         $trukme=$queueing['timeSum'];
                                         echo $trukme;
-                                        /*$uzsiregistruota=$row['Registruota'];
+                                        $uzsiregistruota=$row['Registruota'];
                                         $duration=strtotime($trukme);
                                         $date=strtotime($row['Registruota']);
                                         $endtime=$date+$duration;
-                                        echo date ('H:i:s',$endtime-time());*/
+                                        echo date ('H:i:s',$endtime-time());
                                     }
                                     ?>
                                 </td>
