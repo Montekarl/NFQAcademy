@@ -2,7 +2,7 @@
 if (!$conn){
 die("Connection failed: ". mysqli_connect_error());
 }
-$query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas";
+$query = "SELECT * FROM heroku_6b4d1af85eae168.specialistas INNER JOIN heroku_6b4d1af85eae168.lankytojas ON heroku_6b4d1af85eae168.specialistas.id=lankytojas.Specialistas";
 $init_result = mysqli_query($conn, $query);
 ?>
   

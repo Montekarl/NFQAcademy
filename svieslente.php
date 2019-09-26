@@ -3,11 +3,11 @@ require 'dbconfig.php';
 if (!$conn){
     die("Connection failed: ". mysqli_connect_error());
     }
-        $query = "SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.Statusas='Klientas laukia' ORDER BY lankytojas.id ASC LIMIT 10;";
+        $query = "SELECT * FROM heroku_6b4d1af85eae168.specialistas INNER JOIN heroku_6b4d1af85eae168.lankytojas ON heroku_6b4d1af85eae168.specialistas.id=heroku_6b4d1af85eae168.lankytojas.Specialistas WHERE heroku_6b4d1af85eae168.lankytojas.Statusas='Klientas laukia' ORDER BY heroku_6b4d1af85eae168.lankytojas.id ASC LIMIT 20;";
         $init_result = mysqli_query($conn, $query);
         if(isset($_GET['delete_id']))
     {
-        $sql_query="DELETE FROM lankytojas WHERE id=".$_GET['delete_id'];
+        $sql_query="DELETE FROM heroku_6b4d1af85eae168.lankytojas WHERE id=".$_GET['delete_id'];
         mysqli_query($conn, $sql_query);
         header("Location: $_SERVER[PHP_SELF]");
 }
@@ -63,15 +63,16 @@ if (!$conn){
                                     <?php
                                     //Pasirinkti visus prieš tai buvusius klientus ir sudėti jų reikšmes
                                     //"SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<81 AND specialistas.specialistas=\'Saskaitos\'";
-                                    $sql = "SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<" . $row['id'] ." AND specialistas.specialistas='".$row['specialistas']."'";
+                                    $sql = "SELECT SEC_TO_TIME( SUM(time_to_sec(trukme))) As timeSum FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id<" . $row['id']; // ." AND specialistas.specialistas='".$row['specialistas']."'";
                                     $queue_sql = mysqli_query($conn, $sql);
                                     while($queueing = mysqli_fetch_assoc($queue_sql)) {
                                         $trukme=$queueing['timeSum'];
-                                        $uzsiregistruota=$row['Registruota'];
+                                        echo $trukme;
+                                        /*$uzsiregistruota=$row['Registruota'];
                                         $duration=strtotime($trukme);
                                         $date=strtotime($row['Registruota']);
                                         $endtime=$date+$duration;
-                                        echo date ('H:i:s',$endtime-time());
+                                        echo date ('H:i:s',$endtime-time());*/
                                     }
                                     ?>
                                 </td>

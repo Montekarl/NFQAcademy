@@ -8,7 +8,7 @@ if(isset($_POST['btn-save']))
     $Specialistas = isset($_POST['Specialistas']) ? mysqli_real_escape_string($conn,$_POST['Specialistas']):false;
 
     //gauti trukmę užduočiai įvykdyti iš 'specialistas' lentelės (below)
-    $intervalas_query = mysqli_query($conn,"SELECT * FROM specialistas WHERE id='$Specialistas'");
+    $intervalas_query = mysqli_query($conn,"SELECT * FROM heroku_6b4d1af85eae168.specialistas WHERE id='$Specialistas'");
     $intervalas = mysqli_fetch_assoc($intervalas_query);
 
     //dabartiniam laikui konvertuoti (below), kur $registruota = vidutinis laikas užduočiai atlikti

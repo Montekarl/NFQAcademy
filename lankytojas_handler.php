@@ -2,7 +2,7 @@
     require 'dbconfig.php';
     if(isset($_GET['vartotojas'])){
         
-        $sql_query="SELECT * FROM specialistas INNER JOIN lankytojas ON specialistas.id=lankytojas.Specialistas WHERE lankytojas.id=".$_GET['vartotojas'];
+        $sql_query="SELECT * FROM heroku_6b4d1af85eae168.specialistas INNER JOIN heroku_6b4d1af85eae168.lankytojas ON heroku_6b4d1af85eae168.specialistas.id=heroku_6b4d1af85eae168.lankytojas.Specialistas WHERE heroku_6b4d1af85eae168.lankytojas.id=".$_GET['vartotojas'];
         $result_set=mysqli_query($conn,$sql_query);
         $fetched_row=mysqli_fetch_assoc($result_set);
     }
