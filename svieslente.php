@@ -67,11 +67,12 @@ if (!$conn){
                                     $queue_sql = mysqli_query($conn, $sql);
                                     while($queueing = mysqli_fetch_assoc($queue_sql)) {
                                         $trukme=$queueing['timeSum'];
-                                        
                                         $uzsiregistruota=$row['Registruota'];
                                         $duration=strtotime($trukme);
                                         $date=strtotime($row['Registruota']);
                                         $endtime=$date+$duration;
+                                        $hour = date('H');
+                                        $dayTerm = ($hour > 17) ? "Evening" : ($hour > 12) ? "Afternoon" : "Morning";
                                         echo date ('H:i:s',$endtime-time());
                                     }
                                     ?>
